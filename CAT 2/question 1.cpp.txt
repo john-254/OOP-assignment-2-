@@ -1,0 +1,46 @@
+#include <iostream> 
+#include <string> 
+#include <vector> 
+using namespace std; 
+class Book { 
+public: 
+ Book(string author, double price, string title,string book_number, int num_copies) { 
+ this->author = author; 
+ this->price = price; 
+ this->title = title; 
+ this->book_number = book_number; 
+ this->num_copies = num_copies; 
+ } 
+ void insert_record(vector<Book>& database) { 
+ database.push_back(*this); 
+ } 
+ static void display_database(const vector<Book>& database) { 
+ for (const auto& book : database) { 
+ cout << "Author: " << book.author << endl; 
+ cout << "Price: " << book.price << endl; 
+ cout << "Title: " << book.title << endl; 
+ cout << "Book Number: " << book.book_number << endl; 
+ cout << "Number of Copies: " << book.num_copies << endl; 
+ cout << endl; 
+ } 
+ } 
+private: 
+ string author; 
+ double price; 
+ string title; 
+ string book_number; 
+ int num_copies; 
+}; 
+int main() { 
+ vector<Book> database; 
+ // Insert new books into the database 
+ Book book1("Mathew N.O Sadiku", 12.99, "Elements of Electromagnetics", "45673956753", 10); 
+ book1.insert_record(database); 
+ Book book2("Ian Snodden", 14.99, "Elements of PDE", "234567809876543", 6); 
+ book2.insert_record(database); 
+ Book book3("ENG. Ngocho", 9.99, "Analog Electronics", "9780451524935", 6); 
+ book3.insert_record(database); 
+ // Display the contents of the database 
+ Book::display_database(database); 
+ return 0; 
+} 
